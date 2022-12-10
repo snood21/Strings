@@ -25,15 +25,14 @@ namespace strings
     std::cout << std::left << "DefaultConstructor:" << this << std::endl;
   }
 
-  String::String (const char* str):size(std::strlen (str)+1), str(new char[size] {})
+  String::String (const char* str):String(std::strlen (str)+1)
   {
     std::strncpy (this->str, str, size);
     std::cout.width (WIDTH);
     std::cout << std::left << "Constructor:" << this << std::endl;
   }
-  String::String (const String& other):size(other.size), str(new char[size] {})
+  String::String (const String& other):String(other.str)
   {
-    std::strncpy (this->str, str, size);
     std::cout.width (WIDTH);
     std::cout << std::left << "CopyConstructor:" << this << std::endl;
   }
