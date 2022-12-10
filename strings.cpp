@@ -120,4 +120,14 @@ namespace strings
   {
     return os << obj.get_str ();
   }
+  
+  std::istream& operator>> (std::istream& is, String& obj)
+  {
+    char* str;
+    is >> str;
+    
+    obj = String(str);
+    
+    return is;
+  }
 }
