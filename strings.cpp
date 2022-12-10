@@ -19,35 +19,27 @@ namespace strings
   }
 
   //Constructors
-  String::String (const size_t size)
+  String::String (const size_t size):size(size), str(new char[size] {})
   {
-    this->size = size;
-    this->str = new char[size]{};
     std::cout.width (WIDTH);
     std::cout << std::left << "DefaultConstructor:" << this << std::endl;
   }
 
-  String::String (const char* str)
+  String::String (const char* str):size(std::strlen (str)+1), str(new char[size] {})
   {
-    this->size = std::strlen (str) + 1;
-    this->str = new char[size]{};
     std::strncpy (this->str, str, size);
     std::cout.width (WIDTH);
     std::cout << std::left << "Constructor:" << this << std::endl;
   }
-  String::String (const String& other)
+  String::String (const String& other):size(other.size), str(new char[size] {})
   {
-    this->size = other.size;
-    this->str = new char[size]{};
     std::strncpy (this->str, str, size);
     std::cout.width (WIDTH);
     std::cout << std::left << "CopyConstructor:" << this << std::endl;
   }
 
-  String::String (String&& other)
+  String::String (String&& other):size(other.size), str(other.str)
   {
-    this->size = other.size;
-    this->str = other.str;
     other.size = 0;
     other.str = nullptr;
     std::cout.width (WIDTH);
